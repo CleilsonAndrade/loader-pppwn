@@ -16,10 +16,10 @@ if [ -f "$CONFIG_FILE" ]; then
     # Carrega as configurações do arquivo
     source "$CONFIG_FILE"
     # Pergunta ao usuário se deseja continuar com os valores existentes
-    read -t 5 -p $'Valores padrão já existentes no arquivo de configuração.\nDeseja continuar com estes valores? (S/N): ' continue_existing || continue_existing=""
+    read -t 5 -p $'Valores de configuração já salvos.\nDeseja continuar com estes valores? (S/N): ' continue_existing || continue_existing=""
     if [[ $continue_existing == "n" || $continue_existing == "N" ]]; then
         # Solicita ao usuário os novos valores das variáveis
-        read -p $'Informe a interface de rede do seu dispositivo (padrão: eth0):  ' user_interface
+        read -p $'Informe a interface de rede do seu dispositivo (padrão: eth0): ' user_interface
 
         # Exibe as opções de firmware para seleção
         echo "Escolha a firmware do seu PS4 (padrão: 1100): "
@@ -33,7 +33,7 @@ if [ -f "$CONFIG_FILE" ]; then
         done
 
         # Solicita ao usuário o valor de sleep
-        read -p $'Informe o tempo de espera (em segundos) entre as execuções (padrão: 90): ' user_sleep
+        read -p $'Informe o tempo de espera (em segundos) entre as execuções do script (padrão: 90): ' user_sleep
 
         # Armazena os novos valores fornecidos pelo usuário no arquivo de configuração
         echo "INTERFACE=${user_interface:-$INTERFACE}" > "$CONFIG_FILE"
@@ -50,10 +50,10 @@ else
     SLEEP=90
 
     # Pergunta ao usuário se deseja continuar com os valores padrão
-    read -t 5 -p $'Valores padrão não estão configurados.\nDeseja continuar com os valores padrão? (S/N): ' continue_default
+    read -t 5 -p $'Configurações para a execução do script não realizados.\nDeseja configurar o script com os valores padrão? (S/N): ' continue_default
     if [[ $continue_default == "n" || $continue_default == "N" ]]; then
         # Solicita ao usuário os novos valores das variáveis
-        read -p $'Informe a interface de rede do seu dispositivo (padrão: eth0):  ' user_interface
+        read -p $'Informe a interface de rede do seu dispositivo (padrão: eth0): ' user_interface
 
         # Exibe as opções de firmware para seleção
         echo "Escolha a firmware do seu PS4 (padrão: 1100): "
@@ -67,7 +67,7 @@ else
         done
 
         # Solicita ao usuário o valor de sleep
-        read -p $'Informe o tempo de espera (em segundos) entre as execuções (padrão: 90): ' user_sleep
+        read -p $'Informe o tempo de espera (em segundos) entre as execuções do script (padrão: 90): ' user_sleep
 
         # Armazena os novos valores fornecidos pelo usuário no arquivo de configuração
         echo "INTERFACE=${user_interface:-$INTERFACE}" > "$CONFIG_FILE"
