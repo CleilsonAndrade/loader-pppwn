@@ -35,7 +35,7 @@ if [ -f "$CONFIG_FILE" ]; then
         # Armazena os novos valores fornecidos pelo usuário no arquivo de configuração
         echo "INTERFACE=${user_interface:-$INTERFACE}" > "$CONFIG_FILE"
         echo "FW=$FW" >> "$CONFIG_FILE"
-        echo "SLEEP=${user_sleep:90}" >> "$CONFIG_FILE"
+        echo "SLEEP=$SLEEP" >> "$CONFIG_FILE"
 
         # Carrega novamente as configurações do arquivo
         source "$CONFIG_FILE"
@@ -44,7 +44,7 @@ else
     # Define os valores padrão se o arquivo de configuração não existir
     INTERFACE="eth0"
     FW="1100"
-    SLEEP="90"
+    SLEEP=90
 
     # Pergunta ao usuário se deseja continuar com os valores padrão
     read -t 5 -p $'Valores padrão não estão configurados.\nDeseja continuar com os valores padrão? (S/N): ' continue_default
