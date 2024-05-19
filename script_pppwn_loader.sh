@@ -19,10 +19,10 @@ if [ -f "$CONFIG_FILE" ]; then
     read -t 5 -p $'Valores padrão já existentes no arquivo de configuração.\nDeseja continuar com estes valores? (S/N): ' continue_existing || continue_existing=""
     if [[ $continue_existing == "n" || $continue_existing == "N" ]]; then
         # Solicita ao usuário os novos valores das variáveis
-        read -p $'Informe a interface de rede (padrão: eth0): ' user_interface
+        read -p $'Informe a interface de rede do seu dispositivo (padrão: eth0):  ' user_interface
 
         # Exibe as opções de firmware para seleção
-        echo "Selecione o firmware (padrão: 1100): "
+        echo "Escolha a firmware do seu PS4 (padrão: 1100): "
         select fw_option in "${firmware_options[@]}"; do
             # Define o firmware selecionado ou mantém o padrão se nenhuma opção for selecionada
             FW="${fw_option:-$FW}"
@@ -50,10 +50,10 @@ else
     read -t 5 -p $'Valores padrão não estão configurados.\nDeseja continuar com os valores padrão? (S/N): ' continue_default
     if [[ $continue_default == "n" || $continue_default == "N" ]]; then
         # Solicita ao usuário os novos valores das variáveis
-        read -p $'Informe a interface de rede (padrão: eth0): ' user_interface
+        read -p $'Informe a interface de rede do seu dispositivo (padrão: eth0):  ' user_interface
 
         # Exibe as opções de firmware para seleção
-        echo "Selecione o firmware (padrão: 1100): "
+        echo "Escolha a firmware do seu PS4 (padrão: 1100): "
         select fw_option in "${firmware_options[@]}"; do
             # Define o firmware selecionado ou mantém o padrão se nenhuma opção for selecionada
             FW="${fw_option:-$FW}"
@@ -80,8 +80,8 @@ fi
 
 # Exibe os valores das variáveis
 echo ""
-echo "Interface de rede: $INTERFACE"
-echo "Firmware: $FW"
+echo "Interface de rede do dispositivo: $INTERFACE"
+echo "Firmware do PS4: $FW"
 echo "Tempo de espera entre execuções: $SLEEP segundos"
 echo ""
 
