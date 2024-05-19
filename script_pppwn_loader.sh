@@ -24,9 +24,12 @@ if [ -f "$CONFIG_FILE" ]; then
         # Exibe as opções de firmware para seleção
         echo "Escolha a firmware do seu PS4 (padrão: 1100): "
         select fw_option in "${firmware_options[@]}"; do
-            # Define o firmware selecionado ou mantém o padrão se nenhuma opção for selecionada
-            FW="${fw_option:-$FW}"
-            break
+            if [[ "$REPLY" =~ ^[0-9]+$ ]] && (( REPLY >= 1 && REPLY <= ${#firmware_options[@]} )); then
+                FW="$fw_option"
+                break
+            else
+                echo "Opção inválida. Tente novamente."
+            fi
         done
 
         # Solicita ao usuário o valor de sleep
@@ -55,9 +58,12 @@ else
         # Exibe as opções de firmware para seleção
         echo "Escolha a firmware do seu PS4 (padrão: 1100): "
         select fw_option in "${firmware_options[@]}"; do
-            # Define o firmware selecionado ou mantém o padrão se nenhuma opção for selecionada
-            FW="${fw_option:-$FW}"
-            break
+            if [[ "$REPLY" =~ ^[0-9]+$ ]] && (( REPLY >= 1 && REPLY <= ${#firmware_options[@]} )); then
+                FW="$fw_option"
+                break
+            else
+                echo "Opção inválida. Tente novamente."
+            fi
         done
 
         # Solicita ao usuário o valor de sleep
